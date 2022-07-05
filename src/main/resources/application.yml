@@ -1,0 +1,61 @@
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.data: INFO
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG 
+
+
+spring: 
+  application:
+    name: recipe-management
+  profiles:
+    active: local
+    
+server:
+  port: 9092
+  servlet:
+    context-path: /recipeservice
+    
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+ 
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  jpa:
+    show-sql: true
+  data:
+   mongodb:
+      uri: mongodb://localhost:27017/recipe_db
+
+      
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    show-sql: false
+  data:
+   mongodb:
+      uri: mongodb://localhost:30000/recipe_db # Need to change the URI for prod
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: INFO 
+
+      
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  jpa:
+    show-sql: true
+  mongodb:
+    embedded: 
+      version: 3.5.5
