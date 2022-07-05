@@ -48,7 +48,7 @@ public class RecipeExceptionControllerAdviser extends ResponseEntityExceptionHan
             error.setMessage(ex.getMessage());
         }
         error.setStatus(400);
-        LOG.error("FM Http Message Not Readable Exception: " + ex.getMessage(), ex);
+        LOG.error("Recipe Http Message Not Readable Exception: " + ex.getMessage(), ex);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
